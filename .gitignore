@@ -22,6 +22,9 @@ lib-cov
 coverage
 *.lcov
 
+# Apple stuff
+*.DS_Store
+
 # nyc test coverage
 .nyc_output
 
@@ -43,6 +46,9 @@ jspm_packages/
 
 # TypeScript v1 declaration files
 typings/
+
+# Jetbrains
+.idea/
 
 # TypeScript cache
 *.tsbuildinfo
@@ -102,3 +108,4 @@ dist
 
 # TernJS port file
 .tern-port
+.env.local
