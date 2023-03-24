@@ -1,22 +1,21 @@
 import Link from "next/link";
-import { useUser } from '@auth0/nextjs-auth0/client';
+import Login from "./components/Login";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { CrossmintNFTCollectionView } from "@crossmint/client-sdk-react-ui";
 
-export default function Profile() {
+export default function App({ Component, pageProps }) {
     const { user, error, isLoading } = useUser();
 
+    if (!user) return <Login />;
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>{error.message}</div>;
 
-    let content;
-    if (user.wallet == null) {
-        content = "Loading...";
-    }
-    else if (user.wallet.error) {
-        content = "Error: " + user.wallet.message;
-    }
-    else {
-        content = JSON.stringify({ ...user.wallet }, null, 2);
-    }
+    const wallets = [
+        {
+            chain: "ethereum",
+            publicKey: user.wallet.ethereum,
+        },
+    ];
 
     return (
         user && (
@@ -35,10 +34,11 @@ export default function Profile() {
                         <button className="btn-logout">Log out</button>
                     </Link>
                 </div>
-                <h2>{user.email}</h2>
-                <p>{"Email verified: " + user.email_verified}</p>
-                <p>{content}</p>
+
+                <div style={{ height: "100vh" }}>
+                    <CrossmintNFTCollectionView wallets={wallets}/>
+                </div>
             </div>
         )
     );
-};
+}

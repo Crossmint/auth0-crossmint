@@ -119,8 +119,7 @@ a {
   background-color: #10232e;
   padding: 20px;
   display: flex;
-  justify-content: flex-end;
-
+  justify-content: space-between;
 }
 .btn{
   color: white;
@@ -133,6 +132,11 @@ a {
   /*float: right;*/
   display: flex;
   justify-content: flex-end;
+}
+
+.btn-left {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .btn-login{
