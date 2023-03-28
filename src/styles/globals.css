@@ -129,7 +129,6 @@ a {
 }
 
 .btn-logout{
-  /*float: right;*/
   display: flex;
   justify-content: flex-end;
 }

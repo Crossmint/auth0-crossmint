@@ -12,8 +12,8 @@ export default function App({ Component, pageProps }) {
 
     const wallets = [
         {
-            chain: "ethereum",
-            publicKey: user.wallet.ethereum,
+            chain: user.wallet.chain,
+            publicKey: user.wallet.publicKey,
         },
     ];
 
