@@ -2,20 +2,21 @@ import Link from "next/link";
 import { useUser } from '@auth0/nextjs-auth0/client';
 
 export default function Profile() {
+    const namespace = "https://crossmint.com/wallet";
     const { user, error, isLoading } = useUser();
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>{error.message}</div>;
-
+    const wallet = user[namespace];
     let content;
-    if (user.wallet == null) {
+    if (wallet == null) {
         content = "Loading...";
     }
-    else if (user.wallet.error) {
+    else if (wallet.error) {
         content = "Error: " + user.wallet.message;
     }
     else {
-        content = JSON.stringify({ ...user.wallet }, null, 2);
+        content = JSON.stringify({ ...wallet }, null, 2);
     }
 
     return (
